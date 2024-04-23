@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import inquirer from "inquirer";
 const currency = {
     USD: 1, //Base currency
@@ -25,8 +26,10 @@ let user_answer = await inquirer.prompt([
         type: "number",
     }
 ]);
-let fromamount = currency[user_answer.from];
-let toamount = currency[user_answer.to];
+let userFromCurrency = user_answer.from;
+let userToCurrency = userFromCurrency.to;
+let fromamount = currency[userFromCurrency];
+let toamount = currency[userToCurrency];
 let amount = user_answer.amount;
 let baseamount = amount / fromamount; //USD base currency // 4
 let convertamount = baseamount * toamount;
